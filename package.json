@@ -1,0 +1,15 @@
+{
+  "name": "python-sandbox",
+  "version": "1.0.0",
+  "description": "A secure Python code execution environment using Pyodide and Deno. This sandbox allows you to execute Python code in a WebAssembly-based isolated environment without requiring a local Python installation.",
+  "main": "index.js",
+  "dependencies": {
+    "pyodide": "^0.27.7"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

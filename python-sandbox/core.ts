@@ -1,5 +1,5 @@
-// Import Pyodide module using Deno's npm compatibility layer
-import { loadPyodide } from "npm:pyodide";
+// Import Pyodide module from node_modules
+import { loadPyodide } from "../node_modules/pyodide/pyodide.mjs";
 
 
 // Interface defining the structure of Python execution results
