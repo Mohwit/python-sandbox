@@ -22,26 +22,25 @@ class PythonSandbox:
 
     def execute(self, code: str) -> CodeExecutionResult:
         try:
-            # build deno command with configurable permissions
-            cmd = ["deno", "run"]
+            # build node command with TypeScript support
+            cmd = ["npx", "tsx", self.core_script, code]
             
-            # add permissions based on instance configuration
-            if self.allow_net:
-                cmd.append("--allow-net")
-            if self.allow_read:
-                cmd.append("--allow-read")
-            if self.allow_env:
-                cmd.append("--allow-env")
+            # prepare environment variables based on permissions
+            env = os.environ.copy()
             
-            # add script and code argument
-            cmd.extend([self.core_script, code])
+            # set permission flags as environment variables for potential use
+            ## dummy values for now
+            env["SANDBOX_ALLOW_NET"] = str(self.allow_net).lower()
+            env["SANDBOX_ALLOW_READ"] = str(self.allow_read).lower()
+            env["SANDBOX_ALLOW_ENV"] = str(self.allow_env).lower()
             
-            # run deno with the configured permissions
+            # run node with tsx for TypeScript support
             process = subprocess.run(
                 cmd,
                 capture_output=True,
                 text=True,
-                timeout=30
+                timeout=30,
+                env=env
             )
             
             if process.returncode != 0:

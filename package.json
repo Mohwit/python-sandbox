@@ -1,0 +1,15 @@
+{
+  "name": "python-sandbox",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "run": "node python-sandbox/core.ts"
+  },
+  "dependencies": {
+    "pyodide": "^0.24.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "tsx": "^4.0.0"
+  }
+}

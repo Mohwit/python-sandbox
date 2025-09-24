@@ -1,5 +1,5 @@
-// Import Pyodide module using Deno's npm compatibility layer
-import { loadPyodide } from "npm:pyodide";
+// Import Pyodide module using Node.js
+import { loadPyodide } from "pyodide";
 
 
 // Interface defining the structure of Python execution results
@@ -133,8 +133,8 @@ async function main(): Promise<void> {
   let pythonCode = "print('Hello, World!')"; // default code
   
   // get Python code from command line argument
-  if (Deno.args.length > 0) {
-    pythonCode = Deno.args[0];
+  if (process.argv.length > 2) {
+    pythonCode = process.argv[2];
   }
   
   // execute Python code and get the result
@@ -145,6 +145,6 @@ async function main(): Promise<void> {
 }
 
 // run the demo if this file is executed directly
-if (import.meta.main) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   main();
 }
