@@ -1,6 +1,6 @@
 {
   "tasks": {
-    "run": "deno run --allow-net --allow-read --allow-env python-sandbox/core.ts"
+    "run": "deno run --allow-net --allow-read --allow-env python_sandbox/core.ts"
   },
   "nodeModulesDir": "auto"
 }

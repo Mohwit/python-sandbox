@@ -1,6 +1,16 @@
 // Import Pyodide module from node_modules
 import { loadPyodide } from "../node_modules/pyodide/pyodide.mjs";
 
+// Extend ImportMeta to include Deno's main property
+declare global {
+  interface ImportMeta {
+    main: boolean;
+  }
+  
+  const Deno: {
+    args: string[];
+  };
+}
 
 // Interface defining the structure of Python execution results
 export interface PythonResult {
@@ -21,8 +31,11 @@ export class PythonSandbox {
      if (this.initialized) return;
      
      try {
-       // load pyodide webassembly environment
-       this.pyodide = await loadPyodide();
+       // load pyodide webassembly environment with proper indexURL
+       // This tells Pyodide where to find its WASM and other files
+       this.pyodide = await loadPyodide({
+         indexURL: "./node_modules/pyodide/"
+       });
        this.initialized = true;
      } catch (error) {
        throw new Error(`Failed to load Pyodide: ${error}`);
